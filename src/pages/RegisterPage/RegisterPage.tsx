@@ -1,3 +1,13 @@
+import { VisibilityOff, Visibility } from '@mui/icons-material'
+import {
+  InputLabel,
+  FilledInput,
+  InputAdornment,
+  IconButton,
+  FormHelperText,
+} from '@mui/material'
+import { red, green } from '@mui/material/colors'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useAction } from '../../hooks/useAction'
@@ -10,6 +20,7 @@ import {
   ButtonContainer,
   PageName,
   LoginButton,
+  PasswordInput,
 } from './registerStyle'
 
 type Inputs = {
@@ -28,6 +39,16 @@ const RegisterPage = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>()
+
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleClickShowPassword = () => setShowPassword(show => !show)
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault()
+  }
 
   const { registration } = useAction()
 
@@ -67,35 +88,83 @@ const RegisterPage = () => {
             variant='filled'
             helperText={errors.email?.message}
           />
-          <CustomInput
-            fullWidth
-            {...register('password', {
-              required: 'Password is required',
-              minLength: { value: 6, message: 'Password very small' },
-            })}
-            label='Password'
-            required
-            error={errors.password ? true : false}
-            helperText={errors.password?.message}
-            variant='filled'
-          />
-          <CustomInput
-            fullWidth
-            {...register('repeatpassword', {
-              required: 'Repeat password is required',
-              minLength: { value: 6, message: 'Repeat password very small' },
-              validate: (val: string) => {
-                if (watch('password') != val) {
-                  return 'Your passwords do no match'
-                }
-              },
-            })}
-            required
-            label='Repeat Password'
-            error={errors.repeatpassword ? true : false}
-            variant='filled'
-            helperText={errors.repeatpassword?.message}
-          />
+          <PasswordInput variant='filled'>
+            <InputLabel
+              error={errors.password ? true : false}
+              htmlFor='password'
+            >
+              Password
+            </InputLabel>
+            <FilledInput
+              id='password'
+              type={showPassword ? 'text' : 'password'}
+              {...register('password', {
+                required: 'Password is required',
+                minLength: { value: 6, message: 'Password very small' },
+              })}
+              error={errors.password ? true : false}
+              endAdornment={
+                <InputAdornment position='end'>
+                  <IconButton
+                    aria-label='toggle password visibility'
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge='end'
+                    sx={{ color: errors.password ? red[900] : green[900] }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+            {errors.password?.message && (
+              <FormHelperText sx={{ color: red[900] }}>
+                {errors.password?.message}
+              </FormHelperText>
+            )}
+          </PasswordInput>
+          <PasswordInput variant='filled'>
+            <InputLabel
+              error={errors.repeatpassword ? true : false}
+              htmlFor='repeat password'
+            >
+              Repeat password
+            </InputLabel>
+            <FilledInput
+              id='repeat password'
+              type={showPassword ? 'text' : 'password'}
+              {...register('repeatpassword', {
+                required: 'Repeat password is required',
+                minLength: { value: 6, message: 'Repeat password very small' },
+                validate: (val: string) => {
+                  if (watch('password') != val) {
+                    return 'Your passwords do no match'
+                  }
+                },
+              })}
+              error={errors.repeatpassword ? true : false}
+              endAdornment={
+                <InputAdornment position='end'>
+                  <IconButton
+                    aria-label='toggle password visibility'
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge='end'
+                    sx={{
+                      color: errors.repeatpassword ? red[900] : green[900],
+                    }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+            {errors.repeatpassword?.message && (
+              <FormHelperText sx={{ color: red[900] }}>
+                {errors.repeatpassword?.message}
+              </FormHelperText>
+            )}
+          </PasswordInput>
           <ButtonContainer>
             <LoginButton
               fullWidth

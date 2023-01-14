@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { green, red } from '@mui/material/colors'
-import { Button, TextField } from '@mui/material'
+import { Button, TextField, FormControl } from '@mui/material'
 import background from '../../assets/I3E36ec1DEM.jpg'
 
 export const Container = styled('div')`
@@ -15,7 +15,7 @@ export const Container = styled('div')`
 
 export const Dashboard = styled('div')`
   width: 40%;
-  height: 70vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,6 +33,7 @@ export const Logo = styled('div')`
   font-weight: 500;
   color: ${green[900]};
   margin-bottom: 10px;
+  margin-top: 35px;
 `
 
 export const PageName = styled('div')`
@@ -54,6 +55,31 @@ export const FormContainer = styled('form')`
 `
 
 export const CustomInput = styled(TextField)({
+  '& div.MuiFilledInput-root': {
+    backgroundColor: green[50],
+  },
+  '& div.MuiFilledInput-root.Mui-error': {
+    backgroundColor: red[50],
+  },
+  '& label.Mui-focused': {
+    color: green[900],
+  },
+
+  '& label.MuiInputLabel-root': {
+    color: green[900],
+  },
+  '& label.MuiInputLabel-root.Mui-error': {
+    color: red[900],
+  },
+  '& div.MuiFilledInput-root:after': {
+    borderBottom: green[900],
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: green[900],
+  },
+})
+
+export const PasswordInput = styled(FormControl)({
   '& div.MuiFilledInput-root': {
     backgroundColor: green[50],
   },
