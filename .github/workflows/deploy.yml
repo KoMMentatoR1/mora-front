@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: 'true'
+          ssh-key: ${{ secrets.PET_KEY }}
 
       - name: Install
         run: npm install
@@ -26,5 +27,5 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          deploy_key: ${{ secrets.PET_KEY }}
           publish_dir: ./dist
