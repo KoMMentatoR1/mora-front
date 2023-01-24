@@ -25,7 +25,7 @@ jobs:
         run: npm run build
 
       - name: Deploy
-        uses: KoMMentatoR1/mora-front
+        uses: KoMMentatoR1/mora-front@main
         with:
           branch: gh-pages
           folder: dist
