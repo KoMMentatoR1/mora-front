@@ -56,7 +56,7 @@ export const FormContainer = styled('form')`
 
 export const CustomInput = styled(TextField)({
   '& div.MuiFilledInput-root': {
-    backgroundColor: green[50],
+    background: green[50],
   },
   '& div.MuiFilledInput-root.Mui-error': {
     backgroundColor: red[50],
