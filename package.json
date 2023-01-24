@@ -6,7 +6,7 @@
   "homepage": "https://KoMMentatoR1.github.io/mora-front/",
   "scripts": {
     "start": "webpack-dev-server --open",
-    "build": "webpack build mode=production"
+    "build": "webpack build"
   },
   "keywords": [],
   "author": "",
