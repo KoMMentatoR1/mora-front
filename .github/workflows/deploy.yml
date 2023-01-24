@@ -22,7 +22,7 @@ jobs:
         run: npm install && npm run build
 
       - name: Deploy
-        uses: KoMMentatoR1/mora-front
+        uses: KoMMentatoR1/mora-front@ref
         with:
           branch: main # The branch the action should deploy to.
           folder: build # The folder the action should deploy.
