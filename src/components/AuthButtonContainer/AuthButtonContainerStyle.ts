@@ -10,13 +10,13 @@ export const ButtonContainer = styled('div')`
 
   @media (max-width: 1200px) {
     margin-top: 10px;
-    height: auto;
+    height: 75px;
     flex-direction: column;
   }
 
   @media (max-width: 600px) {
     margin-top: 0px;
-    height: auto;
+    height: 75px;
     flex-direction: column;
   }
 `
