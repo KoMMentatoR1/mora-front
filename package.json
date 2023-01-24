@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://KoMMentatoR1.github.io/mora-front/",
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack build mode=production"
@@ -22,6 +23,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/redux": "^3.6.0",
     "axios": "^1.2.2",
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.42.0",
