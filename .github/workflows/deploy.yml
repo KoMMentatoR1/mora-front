@@ -16,16 +16,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Install
         run: npm install
 
-      - name: Build
-        run: npm run build
-
       - name: Deploy
-        uses: KoMMentatoR1/mora-front@main
-        with:
-          branch: gh-pages
-          folder: dist
+        run: npm run deploy -u "KoMMentatoR1 <leshasherbina@gmail.com>"
