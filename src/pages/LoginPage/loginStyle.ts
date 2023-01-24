@@ -10,7 +10,7 @@ export const Container = styled('div')`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url(${background}) no-repeat;
+  background: url(${'/mora-front/' + background}) no-repeat;
 `
 
 export const Dashboard = styled('div')`
