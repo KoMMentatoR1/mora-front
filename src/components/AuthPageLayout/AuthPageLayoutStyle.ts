@@ -10,7 +10,7 @@ export const Container = styled('div')`
   justify-content: center;
   background: url(${background}) no-repeat;
   background-size: cover;
-  background-size: auto;
+  position: fixed;
 `
 
 export const Dashboard = styled('div')`
@@ -19,7 +19,7 @@ export const Dashboard = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background: white;
   border-radius: 24px;
 
@@ -27,6 +27,7 @@ export const Dashboard = styled('div')`
 
   @media (max-width: 1200px) {
     width: 60%;
+    overflow-y: scroll;
   }
 
   @media (max-width: 930px) {
