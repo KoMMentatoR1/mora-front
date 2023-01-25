@@ -19,7 +19,7 @@ export const Dashboard = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   background: white;
   border-radius: 24px;
 
