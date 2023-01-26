@@ -19,7 +19,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: './public/index.html' }),
     new CleanWebpackPlugin(),
-    new BundleAnalyzerPlugin(),
   ],
   module: {
     rules: [
