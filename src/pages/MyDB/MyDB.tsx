@@ -1,11 +1,7 @@
-import Header from '../../components/Header/Header'
+import { Header } from '../../components/Header'
 
 const MyDB = () => {
-  return (
-    <>
-      <Header />
-    </>
-  )
+  return <></>
 }
 
 export default MyDB

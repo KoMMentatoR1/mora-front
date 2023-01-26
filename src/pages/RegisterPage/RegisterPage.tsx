@@ -1,183 +1,108 @@
-import { VisibilityOff, Visibility } from '@mui/icons-material'
-import {
-  InputLabel,
-  FilledInput,
-  InputAdornment,
-  IconButton,
-  FormHelperText,
-} from '@mui/material'
-import { red, green } from '@mui/material/colors'
-import { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { ButtonContainer } from '../../components/AuthButtonContainer/AuthButtonContainerStyle'
-import AuthPageLayout from '../../components/AuthPageLayout/AuthPageLayout'
-import { useAction } from '../../hooks/useAction'
 import {
-  Logo,
+  AuthButton,
+  AuthButtonContainer,
+} from '../../components/Auth/AuthButtonContainer'
+import {
+  AuthPageLayout,
   FormContainer,
-  CustomInput,
-  PageName,
-  LoginButton,
-  PasswordInput,
-} from './registerStyle'
-
-type Inputs = {
-  username: string
-  email: string
-  password: string
-  repeatpassword: string
-}
+} from '../../components/Auth/AuthPageLayout'
+import { BaseInputPassword } from '../../components/base/base-input-password'
+import { BaseInputText } from '../../components/base/base-Input-text'
+import { useAction } from '../../shared/hooks/useAction'
 
 const RegisterPage = () => {
   const navigator = useNavigate()
 
   const {
-    register,
-    handleSubmit,
+    control,
     watch,
+    handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>()
-
-  const [showPassword, setShowPassword] = useState(false)
-
-  const handleClickShowPassword = () => setShowPassword(show => !show)
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault()
-  }
+  } = useForm<FieldValues>()
 
   const { registration } = useAction()
 
-  const onSubmit: SubmitHandler<Inputs> = data =>
+  const onSubmit: SubmitHandler<FieldValues> = data =>
     registration(data.email, data.password, data.username)
 
   return (
-    <AuthPageLayout>
-      <Logo>Mora</Logo>
-      <PageName>Register</PageName>
+    <AuthPageLayout title='Mora' subTitle='Register'>
       <FormContainer>
-        <CustomInput
-          {...register('username', {
-            required: 'Username is required',
-          })}
+        <BaseInputText
           required
-          fullWidth
           label='Username'
           error={errors.username ? true : false}
-          variant='filled'
-          helperText={errors.username?.message}
+          name='username'
+          control={control}
+          rules={{ required: 'Username is required' }}
+          helperText={errors.username?.message as string}
         />
-        <CustomInput
-          {...register('email', {
+        <BaseInputText
+          required
+          label='Email'
+          error={errors.email ? true : false}
+          name='email'
+          control={control}
+          helperText={errors.email?.message as string}
+          rules={{
             required: 'Email Address is required',
             pattern: {
               value:
                 /^[a-zA-Z0-9.!#$%&’*+/=?^_`,{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
               message: 'Email is not valid',
             },
-          })}
-          required
-          fullWidth
-          label='Email'
-          error={errors.email ? true : false}
-          variant='filled'
-          helperText={errors.email?.message}
+          }}
         />
-        <PasswordInput variant='filled'>
-          <InputLabel error={errors.password ? true : false} htmlFor='password'>
-            Password
-          </InputLabel>
-          <FilledInput
-            id='password'
-            type={showPassword ? 'text' : 'password'}
-            {...register('password', {
-              required: 'Password is required',
-              minLength: { value: 6, message: 'Password very small' },
-            })}
-            error={errors.password ? true : false}
-            endAdornment={
-              <InputAdornment position='end'>
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge='end'
-                  sx={{ color: errors.password ? red[900] : green[900] }}
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-          {errors.password?.message && (
-            <FormHelperText sx={{ color: red[900] }}>
-              {errors.password?.message}
-            </FormHelperText>
-          )}
-        </PasswordInput>
-        <PasswordInput variant='filled'>
-          <InputLabel
-            error={errors.repeatpassword ? true : false}
-            htmlFor='repeat password'
-          >
-            Repeat password
-          </InputLabel>
-          <FilledInput
-            id='repeat password'
-            type={showPassword ? 'text' : 'password'}
-            {...register('repeatpassword', {
-              required: 'Repeat password is required',
-              minLength: { value: 6, message: 'Repeat password very small' },
-              validate: (val: string) => {
-                if (watch('password') != val) {
-                  return 'Your passwords do no match'
-                }
-              },
-            })}
-            error={errors.repeatpassword ? true : false}
-            endAdornment={
-              <InputAdornment position='end'>
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge='end'
-                  sx={{
-                    color: errors.repeatpassword ? red[900] : green[900],
-                  }}
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-          {errors.repeatpassword?.message && (
-            <FormHelperText sx={{ color: red[900] }}>
-              {errors.repeatpassword?.message}
-            </FormHelperText>
-          )}
-        </PasswordInput>
-        <ButtonContainer>
-          <LoginButton
+        <BaseInputPassword
+          required
+          label='Password'
+          error={errors.password ? true : false}
+          name='password'
+          control={control}
+          helperText={errors.password?.message as string}
+          rules={{
+            required: 'Password is required',
+            minLength: { value: 6, message: 'Password very small' },
+          }}
+        />
+        <BaseInputPassword
+          required
+          label='Repeat password'
+          error={errors.repeatPassword ? true : false}
+          name='repeatPassword'
+          control={control}
+          helperText={errors.repeatPassword?.message as string}
+          rules={{
+            required: 'Repeat password is required',
+            minLength: { value: 6, message: 'Repeat password very small' },
+            validate: (val: string) => {
+              if (watch('password') != val) {
+                return 'Your passwords do no match'
+              }
+            },
+          }}
+        />
+
+        <AuthButtonContainer>
+          <AuthButton
             fullWidth
             onClick={() => navigator('/login')}
             color='success'
             variant='contained'
           >
             back to login
-          </LoginButton>
-          <LoginButton
+          </AuthButton>
+          <AuthButton
             onClick={handleSubmit(onSubmit)}
             fullWidth
             color='success'
             variant='contained'
           >
             sign in
-          </LoginButton>
-        </ButtonContainer>
+          </AuthButton>
+        </AuthButtonContainer>
       </FormContainer>
     </AuthPageLayout>
   )

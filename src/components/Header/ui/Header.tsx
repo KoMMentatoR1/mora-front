@@ -1,12 +1,10 @@
 import { Toolbar } from '@mui/material'
-import { CastomAppBar } from './HeaderStyle'
+import { CastomAppBar } from '../style/style'
 
-const Header = () => {
+export const Header = () => {
   return (
     <CastomAppBar>
       <Toolbar>{/* content */}</Toolbar>
     </CastomAppBar>
   )
 }
-
-export default Header

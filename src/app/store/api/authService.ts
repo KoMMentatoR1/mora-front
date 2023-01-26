@@ -1,6 +1,6 @@
-import $api, { API_URL } from '../../http'
 import axios, { AxiosResponse } from 'axios'
-import { IUser } from '../../types/user'
+import $api, { API_URL } from '../../../shared/http'
+import { IUser } from '../../../shared/types/user'
 export default class AuthService {
   static async login(
     email: string,
