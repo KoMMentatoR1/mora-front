@@ -1,10 +1,10 @@
 import { HashRouter } from 'react-router-dom'
 import { useEffect } from 'react'
-import { useAction } from './hooks/useAction'
 import './App.css'
 import AppRouter from './routes/AppRouter'
+import { useAction } from '../shared/hooks/useAction'
 
-const App = () => {
+export const App = () => {
   const { cheackAuth } = useAction()
 
   useEffect(() => {
@@ -17,5 +17,3 @@ const App = () => {
     </HashRouter>
   )
 }
-
-export default App

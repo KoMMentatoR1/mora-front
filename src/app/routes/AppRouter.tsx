@@ -1,6 +1,6 @@
 import { publicRoutes, userRoutes } from './routes'
 import { Routes, Route } from 'react-router-dom'
-import { useTypeSelector } from '../hooks/useTypeSelector'
+import { useTypeSelector } from '../../shared/hooks/useTypeSelector'
 
 const AppRouter = () => {
   const { user } = useTypeSelector(store => store.auth)

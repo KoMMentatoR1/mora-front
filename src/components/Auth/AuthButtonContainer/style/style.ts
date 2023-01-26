@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Button } from '@mui/material'
 
 export const ButtonContainer = styled('div')`
   display: flex;
@@ -13,4 +14,7 @@ export const ButtonContainer = styled('div')`
   @media (max-width: 600px) {
     flex-direction: column-reverse;
   }
+`
+export const AuthButton = styled(Button)`
+  font-family: 'Rubik', sans-serif;
 `
