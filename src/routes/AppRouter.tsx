@@ -11,6 +11,8 @@ const AppRouter = () => {
         return publicRoutes
       case 'USER':
         return userRoutes
+      case 'INACTIVE_USER':
+        return userRoutes
       default:
         return publicRoutes
     }
