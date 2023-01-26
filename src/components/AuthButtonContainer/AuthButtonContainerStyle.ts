@@ -7,10 +7,10 @@ export const ButtonContainer = styled('div')`
   margin-top: 30px;
 
   @media (max-width: 1200px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   @media (max-width: 600px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 `

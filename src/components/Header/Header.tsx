@@ -1,10 +1,11 @@
-import { AppBar, Toolbar } from '@mui/material'
+import { Toolbar } from '@mui/material'
+import { CastomAppBar } from './HeaderStyle'
 
 const Header = () => {
   return (
-    <AppBar position='fixed'>
+    <CastomAppBar>
       <Toolbar>{/* content */}</Toolbar>
-    </AppBar>
+    </CastomAppBar>
   )
 }
 
