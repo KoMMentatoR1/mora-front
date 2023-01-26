@@ -9,7 +9,8 @@ export const Logo = styled('div')`
   font-weight: 500;
   color: ${green[900]};
   margin-bottom: 15px;
-  margin-top: 45px;
+  padding-top: 45px;
+  text-align: center;
 `
 
 export const PageName = styled('div')`
@@ -19,6 +20,7 @@ export const PageName = styled('div')`
   font-weight: 500;
   color: ${green[900]};
   margin-bottom: 30px;
+  text-align: center;
 `
 
 export const FormContainer = styled('form')`
@@ -81,8 +83,4 @@ export const PasswordInput = styled(FormControl)({
 
 export const LoginButton = styled(Button)`
   font-family: 'Rubik', sans-serif;
-
-  @media (max-width: 600px) {
-    height: 100px;
-  }
 `

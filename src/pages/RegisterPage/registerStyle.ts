@@ -9,7 +9,8 @@ export const Logo = styled('div')`
   font-weight: 500;
   color: ${green[900]};
   margin-bottom: 10px;
-  margin-top: 35px;
+  padding-top: 35px;
+  text-align: center;
 `
 
 export const PageName = styled('div')`
@@ -19,6 +20,7 @@ export const PageName = styled('div')`
   font-weight: 500;
   color: ${green[900]};
   margin-bottom: 20px;
+  text-align: center;
 `
 
 export const FormContainer = styled('form')`

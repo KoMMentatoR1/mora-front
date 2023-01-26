@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Container, Dashboard } from './AuthPageLayoutStyle'
+import { Background, Container, Dashboard } from './AuthPageLayoutStyle'
 
 interface AuthPageLayoutProps {
   children: React.ReactNode
@@ -7,9 +7,11 @@ interface AuthPageLayoutProps {
 
 const AuthPageLayout: FC<AuthPageLayoutProps> = ({ children }) => {
   return (
-    <Container>
-      <Dashboard>{children}</Dashboard>
-    </Container>
+    <Background>
+      <Container>
+        <Dashboard>{children}</Dashboard>
+      </Container>
+    </Background>
   )
 }
 
