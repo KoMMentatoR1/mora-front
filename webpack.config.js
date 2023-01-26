@@ -1,6 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
@@ -15,13 +17,11 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   devServer: {
     port: 3000,
-    open: true,
-    hot: true,
-    compress: true,
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './public/index.html' }),
     new CleanWebpackPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
   module: {
     rules: [
