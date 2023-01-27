@@ -2,14 +2,17 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+const isDev = process.env.NODE_ENV === 'development'
+const isProd = !isDev
+
 module.exports = {
   entry: ['./src/index.tsx'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: isDev ? '/' : '/mora-front/',
   },
-  mode: 'development',
+  mode: isDev ? 'development' : 'production',
   devServer: {
     port: 3000,
     open: true,
@@ -28,12 +31,12 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(css)$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(png|jpg|jpeg|ttf)$/i,
+        type: 'asset/resource',
       },
       {
-        test: /\.(png|jpg|jpeg)$/i,
-        type: 'asset/resource',
+        test: /\.(css)$/i,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.js$/,
